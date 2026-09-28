@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HAYA - Fahm-ul-Quran</title>
+<title>HAYA - Fahm-ul-Quran | Offline</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@400;600&family=Noto+Nastaliq+Urdu:wght@600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -11,18 +11,19 @@ body{font-family:'Poppins',sans-serif;background:#fdf8f0;color:#111}
 .header{background:#0a0a0a;text-align:center;padding:38px 16px 28px;color:#fff}
 .header h1{font-family:'Noto Nastaliq Urdu',serif;color:#D4AF37;font-size:52px;line-height:1}
 .header p{margin-top:12px;letter-spacing:2px;font-size:13px;opacity:.9}
+.offlineBadge{background:#D4AF37;color:#000;font-size:11px;padding:4px 12px;border-radius:20px;margin-top:10px;display:inline-block}
 .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
 .pill{border:1px solid #D4AF37;color:#fff;padding:10px 20px;border-radius:30px;font-size:14px;cursor:pointer;background:transparent;transition:.2s}
 .pill.active,.pill:hover{background:#D4AF37;color:#000;font-weight:600}
 .hero{padding:38px 20px 10px;text-align:center}
-.hero h2{font-size:36px;line-height:1.3;font-family:'Poppins';font-weight:600}
+.hero h2{font-size:36px;line-height:1.3;font-weight:600}
 .hero h2 span{color:#D4AF37}
 .hero p{color:#888;margin-top:12px;font-size:14px}
 .searchBox{max-width:600px;margin:22px auto;display:flex;background:#fff;border-radius:30px;overflow:hidden;border:1px solid #e8e0c5;box-shadow:0 2px 10px rgba(0,0,0,.05)}
 .searchBox input{flex:1;border:none;padding:15px 20px;outline:none;font-size:14px;background:transparent}
 .searchBox button{background:#111;color:#D4AF37;border:none;padding:0 28px;font-weight:600;cursor:pointer}
-.card{background:#fff;border-radius:18px;padding:20px;margin:18px auto;max-width:650px;box-shadow:0 4px 20px rgba(0,0,0,.06);border-left:5px solid #D4AF37;text-align:left}
-.card h3{font-size:20px}
+.card{background:#fff;border-radius:18px;padding:20px;margin:18px auto;max-width:650px;box-shadow:0 4px 20px rgba(0,0,0,.06);border-left:5px solid #D4AF37;text-align:left;cursor:pointer}
+.card h3{font-size:18px}
 .card p{font-size:13px;color:#777;margin-top:6px}
 .section{display:none;max-width:700px;margin:0 auto;padding:10px 16px 40px}
 .section.active{display:block}
@@ -42,9 +43,10 @@ select{width:100%;padding:14px;border-radius:14px;border:1px solid #D4AF37;backg
 <div class="header">
 <h1>حیاء</h1>
 <p>HAYA BRINGS HAPPINESS | Fahm-ul-Quran</p>
+<div class="offlineBadge" id="netStatus">🌐 Online - Offline Save Ho Raha Hai</div>
 <div class="pills">
 <button class="pill active" onclick="showSec('home',this)">Home</button>
-<button class="pill" onclick="showSec('quranSec',this)">Surah Baqarah</button>
+<button class="pill" onclick="showSec('quranSec',this)">Mukammal Quran</button>
 <button class="pill" onclick="showSec('tasbeehSec',this)">Tasbeeh</button>
 <button class="pill" onclick="showSec('duaSec',this)">Dua Diary</button>
 </div>
@@ -53,7 +55,7 @@ select{width:100%;padding:14px;border-radius:14px;border:1px solid #D4AF37;backg
 <div id="home" class="section active">
 <div class="hero">
 <h2>Quran ko <span>samajh kar</span><br>jeena</h2>
-<p>Meri Fahm-ul-Quran ki diary</p>
+<p>Meri Fahm-ul-Quran ki diary - Offline Available</p>
 <div class="searchBox">
 <input id="searchInput" placeholder="Search Surah...">
 <button onclick="doSearch()">Search</button>
@@ -63,7 +65,7 @@ select{width:100%;padding:14px;border-radius:14px;border:1px solid #D4AF37;backg
 </div>
 
 <div id="quranSec" class="section">
-<h3 style="text-align:center;margin:10px 0">Mukammal Quran Pak - 114 Surah</h3>
+<h3 style="text-align:center;margin:10px 0">Mukammal Quran Pak - 114 Surah - OFFLINE</h3>
 <select id="surahList" onchange="loadQuran()"></select>
 <p id="qInfo" style="text-align:center;color:#D4AF37;margin:10px 0;font-size:13px"></p>
 <div id="quranContainer"></div>
@@ -75,7 +77,6 @@ select{width:100%;padding:14px;border-radius:14px;border:1px solid #D4AF37;backg
 <div id="count">0 / 33</div>
 <button class="btn" onclick="addTasbeeh()">SubhanAllah 🤲</button>
 <button class="btn" style="background:#fff;border:1px solid #D4AF37" onclick="resetTasbeeh()">Reset</button>
-<p style="font-size:11px;opacity:.5;margin-top:10px">Band karogi to bhi save rahega</p>
 </div>
 </div>
 
@@ -88,6 +89,7 @@ select{width:100%;padding:14px;border-radius:14px;border:1px solid #D4AF37;backg
 </div>
 
 <script>
+// SECTIONS
 function showSec(id,btn){
 document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
 document.getElementById(id).classList.add('active');
@@ -96,58 +98,66 @@ if(btn)btn.classList.add('active');
 window.scrollTo(0,0);
 }
 
-// 114 SURAH NAMES
 const surahNames=["1-Al-Fatiha (7)","2-Al-Baqarah (286) - PURI","3-Aal-E-Imran (200)","4-An-Nisa (176)","5-Al-Maidah (120)","6-Al-Anam (165)","7-Al-Araf (206)","8-Al-Anfal (75)","9-At-Tawbah (129)","10-Yunus (109)","11-Hud (123)","12-Yusuf (111)","13-Ar-Rad (43)","14-Ibrahim (52)","15-Al-Hijr (99)","16-An-Nahl (128)","17-Al-Isra (111)","18-Al-Kahf (110)","19-Maryam (98)","20-Ta-Ha (135)","21-Al-Anbiya (112)","22-Al-Hajj (78)","23-Al-Muminun (118)","24-An-Nur (64)","25-Al-Furqan (77)","26-Ash-Shuara (227)","27-An-Naml (93)","28-Al-Qasas (88)","29-Al-Ankabut (69)","30-Ar-Rum (60)","31-Luqman (34)","32-As-Sajda (30)","33-Al-Ahzab (73)","34-Saba (54)","35-Fatir (45)","36-Ya-Sin (83)","37-As-Saffat (182)","38-Sad (88)","39-Az-Zumar (75)","40-Ghafir (85)","41-Fussilat (54)","42-Ash-Shura (53)","43-Az-Zukhruf (89)","44-Ad-Dukhan (59)","45-Al-Jathiya (37)","46-Al-Ahqaf (35)","47-Muhammad (38)","48-Al-Fath (29)","49-Al-Hujurat (18)","50-Qaf (45)","51-Adh-Dhariyat (60)","52-At-Tur (49)","53-An-Najm (62)","54-Al-Qamar (55)","55-Ar-Rahman (78)","56-Al-Waqiah (96)","57-Al-Hadid (29)","58-Al-Mujadila (22)","59-Al-Hashr (24)","60-Al-Mumtahina (13)","61-As-Saff (14)","62-Al-Jumua (11)","63-Al-Munafiqun (11)","64-At-Taghabun (18)","65-At-Talaq (12)","66-At-Tahrim (12)","67-Al-Mulk (30)","68-Al-Qalam (52)","69-Al-Haqqah (52)","70-Al-Maarij (44)","71-Nuh (28)","72-Al-Jinn (28)","73-Al-Muzzammil (20)","74-Al-Muddathir (56)","75-Al-Qiyamah (40)","76-Al-Insan (31)","77-Al-Mursalat (50)","78-An-Naba (40)","79-An-Naziat (46)","80-Abasa (42)","81-At-Takwir (29)","82-Al-Infitar (19)","83-Al-Mutaffifin (36)","84-Al-Inshiqaq (25)","85-Al-Buruj (22)","86-At-Tariq (17)","87-Al-Ala (19)","88-Al-Ghashiyah (26)","89-Al-Fajr (30)","90-Al-Balad (20)","91-Ash-Shams (15)","92-Al-Lail (21)","93-Ad-Duha (11)","94-Al-Inshirah (8)","95-At-Tin (8)","96-Al-Alaq (19)","97-Al-Qadr (5)","98-Al-Bayyinah (8)","99-Az-Zalzalah (8)","100-Al-Adiyat (11)","101-Al-Qariah (11)","102-At-Takathur (8)","103-Al-Asr (3)","104-Al-Humazah (9)","105-Al-Fil (5)","106-Quraish (4)","107-Al-Maun (7)","108-Al-Kauthar (3)","109-Al-Kafirun (6)","110-An-Nasr (3)","111-Al-Masad (5)","112-Al-Ikhlas (4)","113-Al-Falaq (5)","114-An-Nas (6)"];
 let sel=document.getElementById('surahList');
 surahNames.forEach((n,i)=>{let o=document.createElement('option');o.value=i+1;o.text=n;if(i+1==2)o.selected=true;sel.appendChild(o)});
-
 let homeList=document.getElementById('homeList');
-homeList.innerHTML=surahNames.map((n,i)=>`<div class="card" onclick="openSurah(${i+1})"><h3>Surah ${n.split('-')[1]||n}</h3><p>Sabr, Taqwa aur hidayat - Mera Fahm kholne ke liye click karo</p></div>`).join('');
+homeList.innerHTML=surahNames.map((n,i)=>`<div class="card" onclick="openSurah(${i+1})"><h3>${n}</h3><p>Offline ke liye ek baar open karo, phir bina net ke bhi chalega</p></div>`).join('');
+function openSurah(num){sel.value=num;showSec('quranSec',document.querySelectorAll('.pill')[1]);loadQuran();}
+function doSearch(){let v=document.getElementById('searchInput').value.toLowerCase();let filtered=surahNames.map((n,i)=>({n,i})).filter(x=>x.n.toLowerCase().includes(v));homeList.innerHTML=filtered.map(x=>`<div class="card" onclick="openSurah(${x.i+1})"><h3>${x.n}</h3><p>Click karke pura Quran parho</p></div>`).join('');}
 
-function openSurah(num){
-sel.value=num;
-showSec('quranSec',document.querySelectorAll('.pill')[1]);
-loadQuran();
-}
-function doSearch(){
-let v=document.getElementById('searchInput').value.toLowerCase();
-let filtered=surahNames.map((n,i)=>({n,i})).filter(x=>x.n.toLowerCase().includes(v));
-homeList.innerHTML=filtered.map(x=>`<div class="card" onclick="openSurah(${x.i+1})"><h3>Surah ${x.n}</h3><p>Click karke pura Quran parho</p></div>`).join('');
-}
+// OFFLINE LOGIC
+function saveOffline(num, data){localStorage.setItem('quran_'+num, JSON.stringify(data));}
+function getOffline(num){let d=localStorage.getItem('quran_'+num);return d?JSON.parse(d):null;}
 
-// TASBEEH
-let count=parseInt(localStorage.getItem('tasbeeh')||0);
-function update(){document.getElementById('count').innerText=count+" / 33";localStorage.setItem('tasbeeh',count)}
-update();
-function addTasbeeh(){count++;if(count>33){count=0;alert("MashaAllah 33 mukammal!")}update()}
-function resetTasbeeh(){count=0;update()}
-
-// DUA
-let duaInput=document.getElementById('duaInput');
-duaInput.value=localStorage.getItem('myDua')||"";
-duaInput.addEventListener('input',()=>localStorage.setItem('myDua',duaInput.value));
-function shareDua(){window.open("https://wa.me/?text="+encodeURIComponent(duaInput.value))}
-
-// QURAN LOAD - PURA QURAN, NO SLICE, URDU + ENGLISH
 async function loadQuran(){
 let num=sel.value;
 let cont=document.getElementById('quranContainer');
 let info=document.getElementById('qInfo');
-cont.innerHTML="<p style='text-align:center;opacity:.5'>Mukammal Surah Loading... 📖</p>";
+cont.innerHTML="<p style='text-align:center;opacity:.5'>Loading... 📖</p>";
+let cached=getOffline(num);
+if(!navigator.onLine && cached){
+  renderQuran(cached.ar,cached.ur,cached.en);
+  info.innerText=cached.ar.data.englishName+" - OFFLINE - Total "+cached.ar.data.numberOfAyahs+" Ayat";
+  return;
+}
 try{
 let [ar,ur,en]=await Promise.all([
 fetch(`https://api.alquran.cloud/v1/surah/${num}`).then(r=>r.json()),
 fetch(`https://api.alquran.cloud/v1/surah/${num}/ur.junagarhi`).then(r=>r.json()),
 fetch(`https://api.alquran.cloud/v1/surah/${num}/en.asad`).then(r=>r.json())
 ]);
-info.innerText=`${ar.data.englishName} - Total ${ar.data.numberOfAyahs} Ayat PURI`;
+saveOffline(num,{ar,ur,en});
+renderQuran(ar,ur,en);
+info.innerText=`${ar.data.englishName} - Total ${ar.data.numberOfAyahs} Ayat PURI - Offline Save Ho Gaya ✅`;
+}catch(e){
+if(cached){renderQuran(cached.ar,cached.ur,cached.en);info.innerText=cached.ar.data.englishName+" - OFFLINE MODE";}
+else cont.innerHTML="Internet on karo, ek baar load hone ke baad offline chalega";
+}
+}
+function renderQuran(ar,ur,en){
+let cont=document.getElementById('quranContainer');
 let html="";
 for(let i=0;i<ar.data.ayahs.length;i++){
 html+=`<div class="ayah"><span style="color:#D4AF37;font-size:11px">AYAT ${ar.data.ayahs[i].numberInSurah} / ${ar.data.numberOfAyahs}</span><div class="ar">${ar.data.ayahs[i].text}</div><div class="ur"><b>Urdu:</b> ${ur.data.ayahs[i].text}</div><div class="en"><b>English:</b> ${en.data.ayahs[i].text}</div></div>`;
 }
 cont.innerHTML=html;
-}catch(e){cont.innerHTML="Internet check karo"}
 }
+
+// TASBEEH + DUA
+let count=parseInt(localStorage.getItem('tasbeeh')||0);
+function update(){document.getElementById('count').innerText=count+" / 33";localStorage.setItem('tasbeeh',count)}
+update();
+function addTasbeeh(){count++;if(count>33){count=0;alert("MashaAllah 33 mukammal!")}update()}
+function resetTasbeeh(){count=0;update()}
+let duaInput=document.getElementById('duaInput');
+duaInput.value=localStorage.getItem('myDua')||"";
+duaInput.addEventListener('input',()=>localStorage.setItem('myDua',duaInput.value));
+function shareDua(){window.open("https://wa.me/?text="+encodeURIComponent(duaInput.value))}
+
+// NET STATUS
+function checkNet(){document.getElementById('netStatus').innerText=navigator.onLine?"🌐 Online - Offline Save Ho Raha Hai":"📴 Offline Mode - Saved Surah Chal Rahi Hain"}
+window.addEventListener('online',checkNet);window.addEventListener('offline',checkNet);checkNet();
 loadQuran();
 </script>
 </body>
