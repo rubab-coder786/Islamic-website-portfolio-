@@ -1,14 +1,13 @@
 {
   "name": "HAYA - Fahm-ul-Quran",
   "short_name": "HAYA",
-  "description": "Quran ko samajh kar jeena - Offline Quran App",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#fdf8f0",
   "theme_color": "#0f3d2e",
   "icons": [
     {
-       "src": "https://cdn-icons-png.flaticon.com/512/3873/3873499.png?v=2",
+      "src": "icon.png",
       "sizes": "512x512",
       "type": "image/png"
     }
