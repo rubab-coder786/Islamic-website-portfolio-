@@ -1,0 +1,13 @@
+{
+  "name": "HAYA - Fahm-ul-Quran",
+  "short_name": "HAYA",
+  "start_url": "/Islamic-website-portfolio-/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#D4AF37",
+  "icons": [{
+    "src": "https://cdn-icons-png.flaticon.com/512/4128/4128213.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}
