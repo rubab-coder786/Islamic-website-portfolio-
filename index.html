@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<button id="installBtn" style="display:none; background:#d4af37; color:black; padding:10px 20px; border-radius:20px; border:none; margin-top:15px; font-weight:bold;">
+  📥 App Download Karo
+</button>
+
   <link rel="manifest" href="manifest.json">
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js')}</script>
 <meta charset="UTF-8">
@@ -42,6 +46,7 @@ select{width:100%;padding:14px;border-radius:14px;border:1px solid #D4AF37;backg
 </style>
 </head>
 <body>
+
 
 <div class="header">
 <h1>حیاء</h1>
@@ -158,5 +163,17 @@ function checkNet(){document.getElementById('netStatus').innerText=navigator.onL
 window.addEventListener('online',checkNet);window.addEventListener('offline',checkNet);checkNet();
 loadQuran();
 </script>
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block';
+});
+
+installBtn.addEventListener('click', () => {
+  deferredPrompt.prompt();
+});
 </body>
 </html>
