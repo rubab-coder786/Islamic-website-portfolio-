@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAYA - Fahm-ul-Quran</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#D4AF37">
+<style>
+body{background:#000;color:#fff;font-family:sans-serif;text-align:center;margin:0;padding:20px}
+.gold{color:#D4AF37}
+.box{border:1px solid #D4AF37;border-radius:15px;padding:20px;margin:15px auto;max-width:600px;background:#111}
+button{background:#D4AF37;color:#000;border:none;padding:12px 25px;border-radius:25px;font-weight:bold;cursor:pointer;margin:5px}
+select,input,textarea{width:90%;padding:12px;border-radius:10px;border:1px solid #D4AF37;background:#000;color:#fff;margin:10px}
+#count{font-size:50px;color:#D4AF37}
+</style>
+</head>
+<body>
+
+<h1 class="gold">HAYA 🌙</h1>
+<p>Fahm-ul-Quran - Quran ko samajh kar jeena</p>
+
+<!-- 1. DAILY AYAH -->
+<div class="box">
+<h3 class="gold">Aaj ki Ayah</h3>
+<p id="dailyAyah">Loading...</p>
+</div>
+
+<!-- 2. TASBEEH -->
+<div class="box">
+<h3 class="gold">Digital Tasbeeh</h3>
+<div id="count">0 / 33</div>
+<button onclick="addTasbeeh()">SubhanAllah 🤲</button>
+<button onclick="resetTasbeeh()" style="background:white">Reset</button>
+<p style="font-size:12px">Band karogi to bhi save rahega!</p>
+</div>
+
+<!-- 3. QURAN + TRANSLATION -->
+<div class="box">
+<h3 class="gold">Pura Quran - Tarjume ke Sath</h3>
+<select id="surahList" onchange="loadQuran()">
+<option value="1">1 - Surah Fatiha</option>
+<option value="2" selected>2 - Surah Baqarah</option>
+<option value="36">36 - Surah Yaseen</option>
+<option value="55">55 - Surah Rahman</option>
+<option value="67">67 - Surah Mulk</option>
+<option value="112">112 - Surah Ikhlas</option>
+</select>
+<div id="quran-container">Loading Quran... 📖</div>
+</div>
+
+<!-- 4. DUA DIARY -->
+<div class="box">
+<h3 class="gold">Meri Dua Diary 📝</h3>
+<textarea id="duaInput" rows="4" placeholder="Apni dua yahan likho... Allah sun raha hai"></textarea>
+<p style="font-size:12px;color:#D4AF37">Auto-save ho jayega!</p>
+<button onclick="shareDua()">WhatsApp par Share karo</button>
+</div>
+
+<!-- 5. MASNOON DUAIN -->
+<div class="box">
+<h3 class="gold">Masnoon Duain</h3>
+<div id="duaList"></div>
+</div>
+
+<script>
+// DAILY AYAH
+const ayahs=["Beshak mushkil ke sath asani hai - 94:6","Allah sabr karne walon ke sath hai - 2:153","Tum mujhe yaad karo main tumhe yaad karunga - 2:152"];
+document.getElementById('dailyAyah').innerText=ayahs[new Date().getDate()%ayahs.length];
+
+// TASBEEH
+let count=parseInt(localStorage.getItem('tasbeeh')||0);
+let target=33;
+function updateTasbeeh(){document.getElementById('count').innerText=count+" / "+target;localStorage.setItem('tasbeeh',count);}
+updateTasbeeh();
+function addTasbeeh(){count++;if(count>target){alert("MashaAllah! 33 Mukammal! 🤲");count=0;}updateTasbeeh();if(navigator.vibrate)navigator.vibrate(40);}
+function resetTasbeeh(){count=0;updateTasbeeh();}
+
+// DUA DIARY
+const duaInput=document.getElementById('duaInput');
+duaInput.value=localStorage.getItem('myDua')||"";
+duaInput.addEventListener('input',()=>localStorage.setItem('myDua',duaInput.value));
+function shareDua(){window.open(`https://wa.me/?text=${encodeURIComponent(duaInput.value)}`);}
+
+// QURAN API - PURA QURAN + URDU TARJUMA
+async function loadQuran(){
+let num=document.getElementById('surahList').value;
+let cont=document.getElementById('quran-container');
+cont.innerHTML="Loading...";
+try{
+let res=await fetch(`https://api.alquran.cloud/v1/surah/${num}/ur.junagarhi`);
+let data=await res.json();
+let html="";
+data.data.ayahs.slice(0,20).forEach(a=>{
+html+=`<div style="border-bottom:1px solid #333;padding:15px;text-align:left">
+<p style="color:#D4AF37;font-weight:bold">Ayat ${a.numberInSurah}</p>
+<p>${a.text}</p>
+<button onclick="window.open('https://wa.me/?text=${encodeURIComponent(a.text)}')">Share</button>
+</div>`;
+});
+cont.innerHTML=html;
+}catch(e){cont.innerHTML="Internet check karo, Quran load nahi hua";}
+}
+loadQuran();
+
+// MASNOON DUAIN LIST
+const duas=[
+{title:"Pareshani ki Dua",text:"Allahumma la sahla illa ma ja'altahu sahla"},
+{title:"Sone ki Dua",text:"Bismika Allahumma amutu wa ahya"},
+{title:"Jaagne ki Dua",text:"Alhamdulillahil lazi ahyana ba'da ma amatana"}
+];
+document.getElementById('duaList').innerHTML=duas.map(d=>`<div style="background:#000;padding:10px;margin:5px;border-radius:10px"><b class="gold">${d.title}</b><p>${d.text}</p></div>`).join('');
+
+// APP INSTALL
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
+</script>
+</body>
+</html>
