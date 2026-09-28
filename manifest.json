@@ -2,7 +2,7 @@
   "name": "HAYA - Fahm-ul-Quran",
   "short_name": "HAYA",
   "description": "Quran ko samajh kar jeena - Offline Quran App",
-  "start_url": "/Islamic-website-portfolio-/?v=app",
+  "start_url": "./?v=app",
   "display": "standalone",
   "background_color": "#fdf8f0",
   "theme_color": "#0a0a0a",
