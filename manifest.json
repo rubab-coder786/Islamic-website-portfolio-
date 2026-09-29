@@ -1,15 +1,17 @@
 {
   "name": "HAYA - Fahm-ul-Quran",
   "short_name": "HAYA",
+  "description": "Quran ko samajh kar jeena - Fahm ul Quran Diary by Rubab",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#fdf8f0",
+  "background_color": "#FFFBF0",
   "theme_color": "#0f3d2e",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
