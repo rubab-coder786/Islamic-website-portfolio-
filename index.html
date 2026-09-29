@@ -62,7 +62,7 @@ body{background:#FFFBF0;color:#121212}
 
 <div class="header">
 <div class="menu-btn" onclick="openDrawer()">☰</div>
-<span class="arabic-logo">حاء</span>
+<span class="arabic-logo">حیاء</span>
 <span class="subtitle">HAYA BRINGS HAPPINESS | Fahm-ul-Quran</span>
 <div class="badge">🌐 Online - Offline Save</div>
 <div class="pills">
@@ -74,7 +74,7 @@ body{background:#FFFBF0;color:#121212}
 </div>
 
 <div id="drawer">
-<div class="d-head"><h2 style="margin:0">حاء HAYA</h2><p style="font-size:13px;margin-top:5px">Fahm ul Quran - Diary</p></div>
+<div class="d-head"><h2 style="margin:0">حیاء HAYA</h2><p style="font-size:13px;margin-top:5px">Fahm ul Quran - Diary</p></div>
 <a class="d-item" onclick="showSec('home')"><div>🏠</div><span>Home</span></a>
 <a class="d-item" onclick="showSec('quran')"><div>📖</div><span>Quran Pak - 114 Surahs</span></a>
 <a class="d-item" onclick="showSec('tasbeeh')"><div>📿</div><span>Tasbeeh Counter</span></a>
@@ -121,7 +121,7 @@ body{background:#FFFBF0;color:#121212}
 </div>
 
 <script>
-window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>{document.getElementById('splash').style.display='none'},500)},1800)});
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>{document.getElementById('splash').style.display='none'},1000)},2200)});
 function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('show')}
 function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
 function showSec(n){document.querySelectorAll('.sec').forEach(s=>s.classList.add('hidden'));document.getElementById(n).classList.remove('hidden');closeDrawer();window.scrollTo(0,0)}
