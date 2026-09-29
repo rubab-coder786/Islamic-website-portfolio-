@@ -1,181 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
- <link rel="manifest"href="manifest.json">
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HAYA - Fahm-ul-Quran | Offline</title>
-<meta name="theme-color" content="#0a0a0a">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@400;600&family=Noto+Nastaliq+Urdu:wght@600&display=swap" rel="stylesheet">
+<title>HAYA - Fahm ul Quran</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f3d2e">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Poppins',sans-serif;background:#fdf8f0;color:#111}
-.header{background:#0a0a0a;text-align:center;padding:38px 16px 28px;color:#fff}
-.header h1{font-family:'Noto Nastaliq Urdu',serif;color:#D4AF37;font-size:52px;line-height:1}
-.header p{margin-top:12px;letter-spacing:2px;font-size:13px;opacity:.9}
-.offlineBadge{background:#D4AF37;color:#000;font-size:11px;padding:4px 12px;border-radius:20px;margin-top:10px;display:inline-block}
-.pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
-.pill{border:1px solid #D4AF37;color:#fff;padding:10px 20px;border-radius:30px;font-size:14px;cursor:pointer;background:transparent;transition:.2s}
-.pill.active,.pill:hover{background:#D4AF37;color:#000;font-weight:600}
-.hero{padding:38px 20px 10px;text-align:center}
-.hero h2{font-size:36px;line-height:1.3;font-weight:600}
-.hero h2 span{color:#D4AF37}
-.hero p{color:#888;margin-top:12px;font-size:14px}
-.searchBox{max-width:600px;margin:22px auto;display:flex;background:#fff;border-radius:30px;overflow:hidden;border:1px solid #e8e0c5;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-.searchBox input{flex:1;border:none;padding:15px 20px;outline:none;font-size:14px;background:transparent}
-.searchBox button{background:#111;color:#D4AF37;border:none;padding:0 28px;font-weight:600;cursor:pointer}
-.card{background:#fff;border-radius:18px;padding:20px;margin:18px auto;max-width:650px;box-shadow:0 4px 20px rgba(0,0,0,.06);border-left:5px solid #D4AF37;text-align:left;cursor:pointer}
-.card h3{font-size:18px}
-.card p{font-size:13px;color:#777;margin-top:6px}
-.section{display:none;max-width:700px;margin:0 auto;padding:10px 16px 40px}
-.section.active{display:block}
-.ayah{background:#fff;border-radius:16px;padding:18px;margin:12px 0;border:1px solid #eee}
-.ar{font-family:'Amiri',serif;font-size:24px;direction:rtl;text-align:right;color:#111;line-height:2}
-.ur{font-size:14px;margin-top:10px;line-height:1.9}
-.en{font-size:12px;color:#888;margin-top:6px;font-style:italic}
-#count{font-size:58px;color:#D4AF37;font-weight:800;text-align:center}
-.tasbeehBox{background:#fff;border-radius:20px;padding:25px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.06)}
-.btn{background:#D4AF37;color:#000;border:none;padding:14px;border-radius:30px;width:100%;font-weight:700;margin-top:10px;cursor:pointer}
-textarea{width:100%;padding:14px;border-radius:14px;border:1px solid #e8e0c5;margin-top:10px}
-select{width:100%;padding:14px;border-radius:14px;border:1px solid #D4AF37;background:#fff;margin-top:10px}
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto}
+body{background:#FFFBF0;color:#121212}
+#splash{position:fixed;inset:0;background:#FFFBF0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:.8s}
+#splash.hide{opacity:0;pointer-events:none}
+.splash-book{width:180px;height:180px;border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,.2);animation:pop 1.2s forwards;object-fit:cover}
+@keyframes pop{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.1);opacity:1}100%{transform:scale(1);opacity:1}}
+.splash-haya{font-size:44px;font-weight:800;letter-spacing:5px;color:#0f3d2e;margin-top:18px;opacity:0;animation:fadeUp 1s .8s forwards}
+.splash-sub{font-size:13px;letter-spacing:3px;color:#C8A030;margin-top:6px;opacity:0;animation:fadeUp 1s 1.2s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.loader{width:50px;height:3px;background:#e8dfc8;border-radius:10px;margin-top:18px;overflow:hidden}
+.loader span{display:block;height:100%;width:0;background:#0f3d2e;animation:load 1.2s 1.6s forwards}
+@keyframes load{to{width:100%}}
+.header{background:#121212;text-align:center;padding:30px 15px 20px;border-radius:0 0 25px 25px;position:relative}
+.arabic-logo{font-size:62px;color:#D4AF37;display:block;margin-bottom:12px;font-family:serif}
+.subtitle{color:#fff;letter-spacing:2.5px;font-size:12px;display:block;margin-bottom:14px;line-height:1.6}
+.badge{background:#D4AF37;color:#121212;padding:6px 14px;border-radius:20px;font-size:11px;display:inline-block;margin-bottom:14px}
+.pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.pill{border:1px solid #D4AF37;padding:7px 16px;border-radius:20px;font-size:13px;color:#fff;cursor:pointer}
+.menu-btn{position:absolute;left:15px;top:22px;font-size:26px;color:#fff;cursor:pointer}
+#drawer{position:fixed;top:0;left:-300px;width:285px;height:100%;background:#0f3d2e;color:#fff;transition:.3s;z-index:1002;overflow-y:auto}
+#drawer.open{left:0}
+.d-head{background:#FFFBF0;color:#0f3d2e;padding:22px;text-align:center}
+.d-item{display:flex;align-items:center;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer;color:#fff;text-decoration:none}
+.d-item span{margin-left:18px;font-size:14px}
+.d-item:hover{background:rgba(255,255,255,.08)}
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:1001}
+#overlay.show{display:block}
+.content{padding:18px}
+.hero{text-align:center}
+.main-book{width:165px;height:165px;border-radius:20px;box-shadow:0 8px 22px rgba(0,0,0,.15);margin:10px auto;display:block;object-fit:cover}
+.hero h1{font-size:36px;line-height:1.15;margin:12px 0 6px}
+.gold{color:#C8A030}
+.search-box{display:flex;background:#fff;border-radius:50px;overflow:hidden;max-width:380px;margin:18px auto;border:1px solid #e0d5c0;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.search-box input{flex:1;border:none;padding:15px 20px;outline:none;font-size:15px}
+.search-box button{background:#121212;color:#D4AF37;border:none;padding:15px 24px;font-weight:bold;cursor:pointer;white-space:nowrap}
+.card{background:#fff;border-radius:18px;padding:18px;margin-bottom:16px;box-shadow:0 4px 12px rgba(0,0,0,.05);border:1px solid #f0e6d3}
+.hidden{display:none}
+.count{font-size:72px;text-align:center;font-weight:800;margin:8px 0}
+.btn{display:block;width:100%;padding:14px;background:#0f3d2e;color:#fff;border:none;border-radius:12px;font-size:15px;text-align:center;cursor:pointer;margin-top:10px;text-decoration:none}
+.btn-gold{background:#D4AF37;color:#121212;font-weight:bold}
+.q-item{display:flex;justify-content:space-between;padding:12px 4px;border-bottom:1px solid #f5f0e6;font-size:14px}
+.install{background:#0f3d2e;color:#fff;border-radius:18px;padding:18px;text-align:center;margin-top:18px}
 </style>
 </head>
 <body>
 
-<button id="installBtn" style="display:none; background: linear-gradient(135deg, #d4af37, #b8941f); color: white; border: none; padding: 12px 20px; border-radius: 25px; font-weight: bold; position: fixed; top: 10px; right: 10px; z-index: 9999;">📥 App Download Karo</button>
-
+<div id="splash">
+<img src="icon-512.png" class="splash-book" alt="Quran">
+<div class="splash-haya">HAYA</div>
+<div class="splash-sub">BRINGS HAPPINESS</div>
+<div class="loader"><span></span></div>
+</div>
 
 <div class="header">
-<h1>حیاء</h1>
-<p>HAYA BRINGS HAPPINESS | Fahm-ul-Quran</p>
-<div class="offlineBadge" id="netStatus">🌐 Online</div>
+<div class="menu-btn" onclick="openDrawer()">☰</div>
+<span class="arabic-logo">حاء</span>
+<span class="subtitle">HAYA BRINGS HAPPINESS | Fahm-ul-Quran</span>
+<div class="badge">🌐 Online - Offline Save</div>
 <div class="pills">
-<button class="pill active" onclick="showSec('home',this)">Home</button>
-<button class="pill" onclick="showSec('quranSec',this)">Mukammal Quran</button>
-<button class="pill" onclick="showSec('tasbeehSec',this)">Tasbeeh</button>
-<button class="pill" onclick="showSec('duaSec',this)">Dua Diary</button>
+<div class="pill" onclick="showSec('home')">Home</div>
+<div class="pill" onclick="showSec('quran')">Quran</div>
+<div class="pill" onclick="showSec('tasbeeh')">Tasbeeh</div>
+<div class="pill" onclick="showSec('lecture')">Lectures</div>
 </div>
 </div>
 
-<div id="home" class="section active">
-<div class="hero">
-<h2>Quran ko <span>samajh kar</span><br>jeena</h2>
-<p>Meri Fahm-ul-Quran ki diary - Offline Available</p>
-<div class="searchBox">
-<input id="searchInput" placeholder="Search Surah...">
-<button onclick="doSearch()">Search</button>
+<div id="drawer">
+<div class="d-head"><h2 style="margin:0">حاء HAYA</h2><p style="font-size:13px;margin-top:5px">Fahm ul Quran - Diary</p></div>
+<a class="d-item" onclick="showSec('home')"><div>🏠</div><span>Home</span></a>
+<a class="d-item" onclick="showSec('quran')"><div>📖</div><span>Quran Pak - 114 Surahs</span></a>
+<a class="d-item" onclick="showSec('tasbeeh')"><div>📿</div><span>Tasbeeh Counter</span></a>
+<a class="d-item" onclick="showSec('lecture')"><div>🎧</div><span>Fahm ul Quran - Farhat Hashmi</span></a>
+<a class="d-item" onclick="showSec('dua')"><div>🤲</div><span>Dua Diary</span></a>
+<a class="d-item" onclick="showSec('about')"><div>👥</div><span>About HAYA & Rubab</span></a>
+<a class="d-item" onclick="showSec('download')"><div>⬇️</div><span>App Download</span></a>
+<a class="d-item" onclick="shareApp()"><div>↗️</div><span>Share App</span></a>
 </div>
-</div>
-<div id="homeList"></div>
+<div id="overlay" onclick="closeDrawer()"></div>
+
+<div class="content">
+<div id="home" class="sec">
+<div class="hero"><img src="icon-512.png" class="main-book" alt="Quran"><h1>Quran ko<br><span class="gold">samajh kar</span><br>jeena</h1><p style="color:gray;font-size:13px">Meri Fahm-ul-Quran ki diary - Offline Available</p></div>
+<div class="search-box"><input id="sInput" type="text" placeholder="Search Surah..." onkeyup="searchS()"><button onclick="searchS()">Search</button></div>
+<div class="card"><h3 style="margin-bottom:8px">Quick Access</h3><button class="btn" onclick="showSec('quran')">📖 Quran Pak Parhein</button><button class="btn btn-gold" onclick="showSec('lecture')">🎧 Lectures Sunein</button></div>
+<div class="install"><h3>📲 HAYA App Download</h3><p style="font-size:12px;opacity:.9;margin:6px 0 10px">Mobile me install karein, offline chalegi</p><button id="installBtn" class="btn btn-gold" style="display:none">⬇️ Install Now</button><p style="font-size:10px;margin-top:8px;opacity:.6">rubab-coder786.github.io/Islamic-website-portfolio-/</p></div>
 </div>
 
-<div id="quranSec" class="section">
-<h3 style="text-align:center;margin:10px 0">Mukammal Quran Pak - 114 Surah - OFFLINE</h3>
-<select id="surahList" onchange="loadQuran()"></select>
-<p id="qInfo" style="text-align:center;color:#D4AF37;margin:10px 0;font-size:13px"></p>
-<div id="quranContainer"></div>
-</div>
+<div id="quran" class="sec hidden"><div class="card"><h3>📖 Mukammal Quran Pak</h3><div id="qList"><div class="q-item"><span>1. Surah Al-Fatiha</span><span>▶️</span></div><div class="q-item"><span>2. Surah Al-Baqarah</span><span>▶️</span></div><div class="q-item"><span>3. Aal-e-Imran</span><span>▶️</span></div><div class="q-item"><span>36. Surah Yaseen</span><span>▶️</span></div><div class="q-item"><span>55. Surah Rahman</span><span>▶️</span></div><div class="q-item"><span>67. Surah Mulk</span><span>▶️</span></div><div class="q-item"><span>112. Surah Ikhlas</span><span>▶️</span></div></div></div></div>
 
-<div id="tasbeehSec" class="section">
-<div class="tasbeehBox">
-<h3>Digital Tasbeeh</h3>
-<div id="count">0 / 33</div>
-<p style="font-size:12px;color:#999;margin-top:5px">Band karogi to bhi save rahega!</p>
-<button class="btn" onclick="addTasbeeh()">SubhanAllah 🤲</button>
-<button class="btn" style="background:#fff;border:1px solid #D4AF37" onclick="resetTasbeeh()">Reset</button>
-</div>
-</div>
+<div id="tasbeeh" class="sec hidden"><div class="card" style="text-align:center"><h3>📿 Tasbeeh Counter</h3><div class="count" id="count">0</div><p id="zikr" style="color:#0f3d2e;font-weight:bold">SubhanAllah</p><button class="btn" onclick="doTasbeeh()" style="width:130px;height:130px;border-radius:50%;margin:10px auto;font-size:22px;display:block">TAP</button><div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap"><button onclick="setZ('SubhanAllah')" class="pill" style="color:#121212;border-color:#0f3d2e">SubhanAllah</button><button onclick="setZ('Alhamdulillah')" class="pill" style="color:#121212;border-color:#0f3d2e">Alhamdulillah</button><button onclick="setZ('Allahu Akbar')" class="pill" style="color:#121212;border-color:#0f3d2e">Allahu Akbar</button></div><button onclick="resetT()" style="background:none;border:none;color:gray;text-decoration:underline;margin-top:12px">Reset</button></div></div>
 
-<div id="duaSec" class="section">
+<div id="lecture" class="sec hidden"><div class="card"><h3>🎧 Dr. Farhat Hashmi - Fahm ul Quran</h3><p style="font-size:12px;color:gray;margin-bottom:10px">Para 1 to 30 Complete Playlist</p><iframe width="100%" height="210" style="border-radius:12px;border:none" src="https://www.youtube.com/embed/videoseries?list=PL3D4491EB0B9D2E8A" allowfullscreen></iframe><a class="btn" href="https://www.youtube.com/playlist?list=PL0P_T4e3K4pY-6l5" target="_blank" style="margin-top:10px">▶️ Full Playlist Dekhein</a></div></div>
+
+<div id="dua" class="sec hidden"><div class="card"><h3>🤲 Dua Diary</h3><textarea id="duaT" style="width:100%;height:100px;border-radius:12px;padding:12px;border:1px solid #e0d5c0" placeholder="Apni dua yahan likhein..."></textarea><button class="btn" onclick="saveDua()">Save Dua</button></div></div>
+
+<div id="download" class="sec hidden"><div class="install"><img src="icon-512.png" style="width:100px;border-radius:15px;margin-bottom:10px;object-fit:cover"><h3>HAYA App Download</h3><p style="font-size:13px;margin:8px 0">Apne mobile me install karein</p><button id="installBtn2" class="btn btn-gold" style="display:none">⬇️ Install App</button><button class="btn" style="background:#fff;color:#0f3d2e" onclick="shareApp()">🔗 Link Share Karein</button></div></div>
+
+<div id="about" class="sec hidden">
 <div class="card">
-<h3>Meri Dua Diary 📝</h3>
-<textarea id="duaInput" rows="4" placeholder="Apni dua yahan likho..."></textarea>
-<button class="btn" onclick="shareDua()">WhatsApp Share</button>
+<div style="text-align:center"><img src="icon-512.png" style="width:100px;height:100px;border-radius:20px;box-shadow:0 4px 12px rgba(0,0,0,.15);object-fit:cover"><h2 style="margin:12px 0 4px;color:#0f3d2e">حاء - HAYA</h2><p style="font-size:11px;letter-spacing:3px;color:#C8A030">BRINGS HAPPINESS</p></div>
+<div style="margin-top:20px">
+<h3 style="font-size:15px;color:#0f3d2e">🌸 HAYA Kya Hai?</h3>
+<p style="font-size:13px;line-height:1.7;color:#444;margin-top:6px"><b>HAYA (حاء)</b> Arabic ka lafz hai jiska matlab hai <b>Sharam, Paakizgi aur Iman ki khoobsurti</b>. Hadees me hai: <i>"Haya Iman ka hissa hai."</i><br><br>Jab dil me Haya aati hai to zindagi me sukoon aur khushi khud ba khud aa jati hai. Isi liye hum ne naam rakha <b>HAYA BRINGS HAPPINESS</b> - Kyunki Haya dil ko khush rakhti hai.</p>
+<h3 style="font-size:15px;color:#0f3d2e;margin-top:18px">📲 Is App Ke Baare Me</h3>
+<p style="font-size:13px;line-height:1.7;color:#444;margin-top:6px"><b>HAYA - Fahm ul Quran</b> ek Islamic diary App hai jo offline bhi kaam karti hai. Isko maine <b>Rubab</b> ne apni Fahm-ul-Quran journey ke liye banaya hai.<br><br><b>Is App me aapko milega:</b><br>📖 <b>Mukammal Quran Pak</b> - 114 Surah ki list<br>📿 <b>Tasbeeh Counter</b> - Zikr ka hisaab<br>🎧 <b>Fahm ul Quran Lectures</b> - Dr. Farhat Hashmi (Para 1-30)<br>🤲 <b>Dua Diary</b> - Apni duaein save karein<br>⬇️ <b>Installable</b> - Bina Play Store ke</p>
+<div style="background:#FFFBF0;border:1px dashed #D4AF37;border-radius:12px;padding:12px;margin-top:18px;text-align:center"><p style="font-size:13px;color:#0f3d2e;line-height:1.6"><b>Maqsad:</b> Quran ko sirf parhna nahi, <b>samajh kar jeena</b> hai.<br><span style="font-size:11px;color:gray">Made with 🤍 by Rubab | Fahm-ul-Quran Student<br>JazakAllahu Khairan - Duaon me yaad rakhiyega</span></p></div>
+<button class="btn btn-gold" onclick="showSec('home')" style="margin-top:16px">🏠 Home Par Wapis Jao</button>
 </div>
+</div>
+</div>
+
 </div>
 
 <script>
-function showSec(id,btn){
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
-if(btn)btn.classList.add('active');
-window.scrollTo(0,0);
-}
-const surahNames=["1-Al-Fatiha (7)","2-Al-Baqarah (286)","3-Aal-E-Imran (200)","4-An-Nisa (176)","5-Al-Maidah (120)","6-Al-Anam (165)","7-Al-Araf (206)","8-Al-Anfal (75)","9-At-Tawbah (129)","10-Yunus (109)","11-Hud (123)","12-Yusuf (111)","13-Ar-Rad (43)","14-Ibrahim (52)","15-Al-Hijr (99)","16-An-Nahl (128)","17-Al-Isra (111)","18-Al-Kahf (110)","19-Maryam (98)","20-Ta-Ha (135)","21-Al-Anbiya (112)","22-Al-Hajj (78)","23-Al-Muminun (118)","24-An-Nur (64)","25-Al-Furqan (77)","26-Ash-Shuara (227)","27-An-Naml (93)","28-Al-Qasas (88)","29-Al-Ankabut (69)","30-Ar-Rum (60)","31-Luqman (34)","32-As-Sajda (30)","33-Al-Ahzab (73)","34-Saba (54)","35-Fatir (45)","36-Ya-Sin (83)","37-As-Saffat (182)","38-Sad (88)","39-Az-Zumar (75)","40-Ghafir (85)","41-Fussilat (54)","42-Ash-Shura (53)","43-Az-Zukhruf (89)","44-Ad-Dukhan (59)","45-Al-Jathiya (37)","46-Al-Ahqaf (35)","47-Muhammad (38)","48-Al-Fath (29)","49-Al-Hujurat (18)","50-Qaf (45)","51-Adh-Dhariyat (60)","52-At-Tur (49)","53-An-Najm (62)","54-Al-Qamar (55)","55-Ar-Rahman (78)","56-Al-Waqiah (96)","57-Al-Hadid (29)","58-Al-Mujadila (22)","59-Al-Hashr (24)","60-Al-Mumtahina (13)","61-As-Saff (14)","62-Al-Jumua (11)","63-Al-Munafiqun (11)","64-At-Taghabun (18)","65-At-Talaq (12)","66-At-Tahrim (12)","67-Al-Mulk (30)","68-Al-Qalam (52)","69-Al-Haqqah (52)","70-Al-Maarij (44)","71-Nuh (28)","72-Al-Jinn (28)","73-Al-Muzzammil (20)","74-Al-Muddathir (56)","75-Al-Qiyamah (40)","76-Al-Insan (31)","77-Al-Mursalat (50)","78-An-Naba (40)","79-An-Naziat (46)","80-Abasa (42)","81-At-Takwir (29)","82-Al-Infitar (19)","83-Al-Mutaffifin (36)","84-Al-Inshiqaq (25)","85-Al-Buruj (22)","86-At-Tariq (17)","87-Al-Ala (19)","88-Al-Ghashiyah (26)","89-Al-Fajr (30)","90-Al-Balad (20)","91-Ash-Shams (15)","92-Al-Lail (21)","93-Ad-Duha (11)","94-Al-Inshirah (8)","95-At-Tin (8)","96-Al-Alaq (19)","97-Al-Qadr (5)","98-Al-Bayyinah (8)","99-Az-Zalzalah (8)","100-Al-Adiyat (11)","101-Al-Qariah (11)","102-At-Takathur (8)","103-Al-Asr (3)","104-Al-Humazah (9)","105-Al-Fil (5)","106-Quraish (4)","107-Al-Maun (7)","108-Al-Kauthar (3)","109-Al-Kafirun (6)","110-An-Nasr (3)","111-Al-Masad (5)","112-Al-Ikhlas (4)","113-Al-Falaq (5)","114-An-Nas (6)"];
-
-let sel=document.getElementById('surahList');
-surahNames.forEach((n,i)=>{let o=document.createElement('option');o.value=i+1;o.text=n;if(i+1==2)o.selected=true;sel.appendChild(o)});
-let homeList=document.getElementById('homeList');
-homeList.innerHTML=surahNames.map((n,i)=>`<div class="card" onclick="openSurah(${i+1})"><h3>${n}</h3><p>Offline ke liye ek baar open karo, phir bina net ke bhi chalega</p></div>`).join('');
-
-function openSurah(num){sel.value=num;showSec('quranSec',document.querySelectorAll('.pill')[1]);loadQuran();}
-function doSearch(){let v=document.getElementById('searchInput').value.toLowerCase();let filtered=surahNames.map((n,i)=>({n,i})).filter(x=>x.n.toLowerCase().includes(v));homeList.innerHTML=filtered.map(x=>`<div class="card" onclick="openSurah(${x.i+1})"><h3>${x.n}</h3><p>Click karke pura Quran parho</p></div>`).join('');}
-function saveOffline(num, data){localStorage.setItem('quran_'+num, JSON.stringify(data));}
-function getOffline(num){let d=localStorage.getItem('quran_'+num);return d?JSON.parse(d):null;}
-
-async function loadQuran(){
-let num=sel.value;
-let cont=document.getElementById('quranContainer');
-let info=document.getElementById('qInfo');
-cont.innerHTML="<p style='text-align:center;opacity:.5'>Loading... 📖</p>";
-let cached=getOffline(num);
-if(!navigator.onLine && cached){
-  renderQuran(cached.ar,cached.ur,cached.en);
-  info.innerText=cached.ar.data.englishName+" - OFFLINE - Total "+cached.ar.data.numberOfAyahs+" Ayat";
-  return;
-}
-try{
-let [ar,ur,en]=await Promise.all([
-fetch(`https://api.alquran.cloud/v1/surah/${num}`).then(r=>r.json()),
-fetch(`https://api.alquran.cloud/v1/surah/${num}/ur.junagarhi`).then(r=>r.json()),
-fetch(`https://api.alquran.cloud/v1/surah/${num}/en.asad`).then(r=>r.json())
-]);
-saveOffline(num,{ar,ur,en});
-renderQuran(ar,ur,en);
-info.innerText=`${ar.data.englishName} - Total ${ar.data.numberOfAyahs} Ayat - Offline Save Ho Gaya ✅`;
-}catch(e){
-if(cached){renderQuran(cached.ar,cached.ur,cached.en);info.innerText=cached.ar.data.englishName+" - OFFLINE MODE";}
-else cont.innerHTML="<p style='text-align:center'>Internet on karo, ek baar load hone ke baad offline chalega</p>";
-}
-}
-function renderQuran(ar,ur,en){
-let cont=document.getElementById('quranContainer');
-let html="";
-for(let i=0;i<ar.data.ayahs.length;i++){
-html+=`<div class="ayah"><span style="color:#D4AF37;font-size:11px">AYAT ${ar.data.ayahs[i].numberInSurah} / ${ar.data.numberOfAyahs}</span><div class="ar">${ar.data.ayahs[i].text}</div><div class="ur"><b>Urdu:</b> ${ur.data.ayahs[i].text}</div><div class="en"><b>English:</b> ${en.data.ayahs[i].text}</div></div>`;
-}
-cont.innerHTML=html;
-}
-let count=parseInt(localStorage.getItem('tasbeeh')||0);
-function update(){document.getElementById('count').innerText=count+" / 33";localStorage.setItem('tasbeeh',count)}
-update();
-function addTasbeeh(){count++;if(count>33){count=0;alert("MashaAllah 33 mukammal!")}update()}
-function resetTasbeeh(){count=0;update()}
-let duaInput=document.getElementById('duaInput');
-duaInput.value=localStorage.getItem('myDua')||"";
-duaInput.addEventListener('input',()=>localStorage.setItem('myDua',duaInput.value));
-function shareDua(){window.open("https://wa.me/?text="+encodeURIComponent(duaInput.value))}
-function checkNet(){document.getElementById('netStatus').innerText=navigator.onLine?"🌐 Online - Offline Save Ho Raha Hai":"📴 Offline Mode - Saved Surah Chal Rahi Hain"}
-window.addEventListener('online',checkNet);window.addEventListener('offline',checkNet);checkNet();
-loadQuran();
-</script>
-<script>
-let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'block';
-});
-
-installBtn.addEventListener('click', () => {
-  deferredPrompt.prompt();
-});
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>{document.getElementById('splash').style.display='none'},800)},3000)});
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('show')}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+function showSec(n){document.querySelectorAll('.sec').forEach(s=>s.classList.add('hidden'));document.getElementById(n).classList.remove('hidden');closeDrawer();window.scrollTo(0,0)}
+let c=parseInt(localStorage.getItem('tasC')||0);document.getElementById('count').innerText=c;
+function doTasbeeh(){c++;document.getElementById('count').innerText=c;localStorage.setItem('tasC',c)}
+function resetT(){c=0;document.getElementById('count').innerText=0;localStorage.setItem('tasC',0)}
+function setZ(z){document.getElementById('zikr').innerText=z;resetT()}
+function saveDua(){localStorage.setItem('dua',document.getElementById('duaT').value);alert('Dua Save Ho Gayi!')}
+function shareApp(){if(navigator.share){navigator.share({title:'HAYA App',url:location.href})}else{prompt('Link copy kar lein:',location.href)}}
+function searchS(){let v=document.getElementById('sInput').value.toLowerCase();document.querySelectorAll('#qList .q-item').forEach(i=>{i.style.display=i.innerText.toLowerCase().includes(v)?'flex':'none'});if(v)showSec('quran')}
+let dp=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;document.getElementById('installBtn').style.display='block';let b2=document.getElementById('installBtn2');if(b2)b2.style.display='block'});
+function installApp(){if(dp){dp.prompt();dp.userChoice.then(()=>{dp=null})}}
+document.getElementById('installBtn').addEventListener('click',installApp);
+let b2=document.getElementById('installBtn2');if(b2)b2.addEventListener('click',installApp);
+document.getElementById('duaT').value=localStorage.getItem('dua')||"";
 </script>
 </body>
 </html>
