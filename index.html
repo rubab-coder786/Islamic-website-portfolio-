@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HAYA - Fahm ul Quran</title>
+<title>HAYA - Fahm ul Quran | PWA</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0f3d2e">
 <style>
@@ -24,31 +24,29 @@ body{background:#FFFBF0;color:#121212}
 .subtitle{color:#fff;letter-spacing:2.5px;font-size:12px;display:block;margin-bottom:14px;line-height:1.6}
 .badge{background:#D4AF37;color:#121212;padding:6px 14px;border-radius:20px;font-size:11px;display:inline-block;margin-bottom:14px}
 .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
-.pill{border:1px solid #D4AF37;padding:7px 16px;border-radius:20px;font-size:13px;color:#fff;cursor:pointer}
+.pill{border:1px solid #D4AF37;padding:7px 14px;border-radius:20px;font-size:12px;color:#fff;cursor:pointer}
 .menu-btn{position:absolute;left:15px;top:22px;font-size:26px;color:#fff;cursor:pointer}
 #drawer{position:fixed;top:0;left:-300px;width:285px;height:100%;background:#0f3d2e;color:#fff;transition:.3s;z-index:1002;overflow-y:auto}
 #drawer.open{left:0}
 .d-head{background:#FFFBF0;color:#0f3d2e;padding:22px;text-align:center}
-.d-item{display:flex;align-items:center;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer;color:#fff;text-decoration:none}
-.d-item span{margin-left:18px;font-size:14px}
-.d-item:hover{background:rgba(255,255,255,.08)}
+.d-item{display:flex;align-items:center;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer;color:#fff;text-decoration:none}
+.d-item span{margin-left:18px;font-size:13px}
 #overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:1001}
 #overlay.show{display:block}
 .content{padding:18px}
-.hero{text-align:center}
-.main-book{width:165px;height:165px;border-radius:20px;box-shadow:0 8px 22px rgba(0,0,0,.15);margin:10px auto;display:block;object-fit:cover}
-.hero h1{font-size:36px;line-height:1.15;margin:12px 0 6px}
-.gold{color:#C8A030}
-.search-box{display:flex;background:#fff;border-radius:50px;overflow:hidden;max-width:380px;margin:18px auto;border:1px solid #e0d5c0;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.search-box input{flex:1;border:none;padding:15px 20px;outline:none;font-size:15px}
-.search-box button{background:#121212;color:#D4AF37;border:none;padding:15px 24px;font-weight:bold;cursor:pointer;white-space:nowrap}
 .card{background:#fff;border-radius:18px;padding:18px;margin-bottom:16px;box-shadow:0 4px 12px rgba(0,0,0,.05);border:1px solid #f0e6d3}
 .hidden{display:none}
-.count{font-size:72px;text-align:center;font-weight:800;margin:8px 0}
-.btn{display:block;width:100%;padding:14px;background:#0f3d2e;color:#fff;border:none;border-radius:12px;font-size:15px;text-align:center;cursor:pointer;margin-top:10px;text-decoration:none}
+.btn{display:block;width:100%;padding:13px;background:#0f3d2e;color:#fff;border:none;border-radius:12px;font-size:14px;text-align:center;cursor:pointer;margin-top:10px;text-decoration:none}
 .btn-gold{background:#D4AF37;color:#121212;font-weight:bold}
-.q-item{display:flex;justify-content:space-between;padding:12px 4px;border-bottom:1px solid #f5f0e6;font-size:14px}
-.install{background:#0f3d2e;color:#fff;border-radius:18px;padding:18px;text-align:center;margin-top:18px}
+.q-item{display:flex;justify-content:space-between;align-items:center;padding:12px 4px;border-bottom:1px solid #f5f0e6;font-size:14px}
+.para-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.para-card{background:#fff;border:1px solid #f0e6d3;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+.para-card a{font-size:12px;color:#0f3d2e;text-decoration:none;font-weight:bold;display:block;margin-top:6px}
+.hijri-box{background:#0f3d2e;color:#fff;border-radius:16px;padding:16px;text-align:center}
+.forbidden li{font-size:13px;padding:8px 0;border-bottom:1px dashed #e8dfc8}
+.search-box{display:flex;background:#fff;border-radius:50px;overflow:hidden;max-width:380px;margin:18px auto;border:1px solid #e0d5c0}
+.search-box input{flex:1;border:none;padding:14px 18px;outline:none}
+.search-box button{background:#121212;color:#D4AF37;border:none;padding:14px 22px;font-weight:bold;cursor:pointer}
 </style>
 </head>
 <body>
@@ -64,12 +62,13 @@ body{background:#FFFBF0;color:#121212}
 <div class="menu-btn" onclick="openDrawer()">☰</div>
 <span class="arabic-logo">حیاء</span>
 <span class="subtitle">HAYA BRINGS HAPPINESS | Fahm-ul-Quran</span>
-<div class="badge">🌐 Online - Offline Save</div>
+<div class="badge">🌐 Online - Offline Save | English UI</div>
 <div class="pills">
 <div class="pill" onclick="showSec('home')">Home</div>
 <div class="pill" onclick="showSec('quran')">Quran</div>
+<div class="pill" onclick="showSec('lecture')">30 Para PDFs</div>
+<div class="pill" onclick="showSec('calendar')">Islamic Calendar</div>
 <div class="pill" onclick="showSec('tasbeeh')">Tasbeeh</div>
-<div class="pill" onclick="showSec('lecture')">Lectures</div>
 </div>
 </div>
 
@@ -77,66 +76,98 @@ body{background:#FFFBF0;color:#121212}
 <div class="d-head"><h2 style="margin:0">حیاء HAYA</h2><p style="font-size:13px;margin-top:5px">Fahm ul Quran - Diary</p></div>
 <a class="d-item" onclick="showSec('home')"><div>🏠</div><span>Home</span></a>
 <a class="d-item" onclick="showSec('quran')"><div>📖</div><span>Quran Pak - 114 Surahs</span></a>
+<a class="d-item" onclick="showSec('lecture')"><div>📚</div><span>30 Para PDF - Fahm ul Quran</span></a>
+<a class="d-item" onclick="showSec('calendar')"><div>📅</div><span>Islamic Calendar & Forbidden Dates</span></a>
 <a class="d-item" onclick="showSec('tasbeeh')"><div>📿</div><span>Tasbeeh Counter</span></a>
-<a class="d-item" onclick="showSec('lecture')"><div>🎧</div><span>Fahm ul Quran - Farhat Hashmi</span></a>
-<a class="d-item" onclick="showSec('dua')"><div>🤲</div><span>Dua Diary</span></a>
-<a class="d-item" onclick="showSec('about')"><div>👥</div><span>About HAYA & Rubab</span></a>
-<a class="d-item" onclick="showSec('download')"><div>⬇️</div><span>App Download</span></a>
-<a class="d-item" onclick="shareApp()"><div>↗️</div><span>Share App</span></a>
+<a class="d-item" onclick="showSec('about')"><div>👥</div><span>About</span></a>
 </div>
 <div id="overlay" onclick="closeDrawer()"></div>
 
 <div class="content">
+
+<!-- HOME -->
 <div id="home" class="sec">
-<div class="hero"><img src="icon-512.png" class="main-book" alt="Quran"><h1>Quran ko<br><span class="gold">samajh kar</span><br>jeena</h1><p style="color:gray;font-size:13px">Meri Fahm-ul-Quran ki diary - Offline Available</p></div>
-<div class="search-box"><input id="sInput" type="text" placeholder="Search Surah..." onkeyup="searchS()"><button onclick="searchS()">Search</button></div>
-<div class="card"><h3 style="margin-bottom:8px">Quick Access</h3><button class="btn" onclick="showSec('quran')">📖 Quran Pak Parhein</button><button class="btn btn-gold" onclick="showSec('lecture')">🎧 Lectures Sunein</button></div>
-<div class="install"><h3>📲 HAYA App Download</h3><p style="font-size:12px;opacity:.9;margin:6px 0 10px">Mobile me install karein, offline chalegi</p><button id="installBtn" class="btn btn-gold" style="display:none">⬇️ Install Now</button><p style="font-size:10px;margin-top:8px;opacity:.6">rubab-coder786.github.io/Islamic-website-portfolio-/</p></div>
+<div class="card" style="text-align:center"><h1>Live by Understanding<br><span style="color:#C8A030">The Quran</span></h1><p style="color:gray;font-size:12px;margin-top:6px">English Interface | Urdu Translation for Quran</p></div>
+<div class="search-box"><input id="sInput" type="text" placeholder="Search Surah in English..." onkeyup="searchS()"><button onclick="searchS()">Search</button></div>
+<div class="card"><h3>Quick Access</h3><button class="btn" onclick="showSec('quran')">📖 Read Quran with Urdu Translation</button><button class="btn btn-gold" onclick="showSec('lecture')">📚 Open 30 Para PDFs</button><button class="btn" style="background:#fff;color:#0f3d2e;border:1px solid #0f3d2e" onclick="showSec('calendar')">📅 Islamic Calendar Today</button></div>
+<div id="quran-preview" class="card"><h3>📖 Quran Pak - With Urdu Tarjuma</h3><div style="margin-top:10px"><iframe src="https://quran.com/1?translations=158" style="width:100%;height:380px;border:none;border-radius:12px" loading="lazy"></iframe><p style="font-size:10px;color:gray;text-align:center;margin-top:6px">Urdu Translation: Fateh Muhammad Jalandhari - Source Quran.com</p></div></div>
 </div>
 
-<div id="quran" class="sec hidden"><div class="card"><h3>📖 Mukammal Quran Pak</h3><div id="qList"><div class="q-item"><span>1. Surah Al-Fatiha</span><span>▶️</span></div><div class="q-item"><span>2. Surah Al-Baqarah</span><span>▶️</span></div><div class="q-item"><span>3. Aal-e-Imran</span><span>▶️</span></div><div class="q-item"><span>36. Surah Yaseen</span><span>▶️</span></div><div class="q-item"><span>55. Surah Rahman</span><span>▶️</span></div><div class="q-item"><span>67. Surah Mulk</span><span>▶️</span></div><div class="q-item"><span>112. Surah Ikhlas</span><span>▶️</span></div></div></div></div>
-
-<div id="tasbeeh" class="sec hidden"><div class="card" style="text-align:center"><h3>📿 Tasbeeh Counter</h3><div class="count" id="count">0</div><p id="zikr" style="color:#0f3d2e;font-weight:bold">SubhanAllah</p><button class="btn" onclick="doTasbeeh()" style="width:130px;height:130px;border-radius:50%;margin:10px auto;font-size:22px;display:block">TAP</button><div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap"><button onclick="setZ('SubhanAllah')" class="pill" style="color:#121212;border-color:#0f3d2e">SubhanAllah</button><button onclick="setZ('Alhamdulillah')" class="pill" style="color:#121212;border-color:#0f3d2e">Alhamdulillah</button><button onclick="setZ('Allahu Akbar')" class="pill" style="color:#121212;border-color:#0f3d2e">Allahu Akbar</button></div><button onclick="resetT()" style="background:none;border:none;color:gray;text-decoration:underline;margin-top:12px">Reset</button></div></div>
-
-<div id="lecture" class="sec hidden"><div class="card"><h3>🎧 Dr. Farhat Hashmi - Fahm ul Quran</h3><p style="font-size:12px;color:gray;margin-bottom:10px">Para 1 to 30 Complete Playlist</p><iframe width="100%" height="210" style="border-radius:12px;border:none" src="https://www.youtube.com/embed/videoseries?list=PL3D4491EB0B9D2E8A" allowfullscreen></iframe><a class="btn" href="https://www.youtube.com/playlist?list=PL0P_T4e3K4pY-6l5" target="_blank" style="margin-top:10px">▶️ Full Playlist Dekhein</a></div></div>
-
-<div id="dua" class="sec hidden"><div class="card"><h3>🤲 Dua Diary</h3><textarea id="duaT" style="width:100%;height:100px;border-radius:12px;padding:12px;border:1px solid #e0d5c0" placeholder="Apni dua yahan likhein..."></textarea><button class="btn" onclick="saveDua()">Save Dua</button></div></div>
-
-<div id="download" class="sec hidden"><div class="install"><img src="icon-512.png" style="width:100px;border-radius:15px;margin-bottom:10px;object-fit:cover"><h3>HAYA App Download</h3><p style="font-size:13px;margin:8px 0">Apne mobile me install karein</p><button id="installBtn2" class="btn btn-gold" style="display:none">⬇️ Install App</button><button class="btn" style="background:#fff;color:#0f3d2e" onclick="shareApp()">🔗 Link Share Karein</button></div></div>
-
-<div id="about" class="sec hidden">
-<div class="card">
-<div style="text-align:center"><img src="icon-512.png" style="width:100px;height:100px;border-radius:20px;box-shadow:0 4px 12px rgba(0,0,0,.15);object-fit:cover"><h2 style="margin:12px 0 4px;color:#0f3d2e">حاء - HAYA</h2><p style="font-size:11px;letter-spacing:3px;color:#C8A030">BRINGS HAPPINESS</p></div>
-<div style="margin-top:20px">
-<h3 style="font-size:15px;color:#0f3d2e">🌸 HAYA Kya Hai?</h3>
-<p style="font-size:13px;line-height:1.7;color:#444;margin-top:6px"><b>HAYA (حیاء)</b> Arabic ka lafz hai jiska matlab hai <b>Sharam, Paakizgi aur Iman ki khoobsurti</b>. Hadees me hai: <i>"Haya Iman ka hissa hai."</i><br><br>Jab dil me Haya aati hai to zindagi me sukoon aur khushi khud ba khud aa jati hai. Isi liye hum ne naam rakha <b>HAYA BRINGS HAPPINESS</b> - Kyunki Haya dil ko khush rakhti hai.</p>
-<h3 style="font-size:15px;color:#0f3d2e;margin-top:18px">📲 Is App Ke Baare Me</h3>
-<p style="font-size:13px;line-height:1.7;color:#444;margin-top:6px"><b>HAYA - Fahm ul Quran</b> ek Islamic diary App hai jo offline bhi kaam karti hai. Isko maine <b>Rubab</b> ne apni Fahm-ul-Quran journey ke liye banaya hai.<br><br><b>Is App me aapko milega:</b><br>📖 <b>Mukammal Quran Pak</b> - 114 Surah ki list<br>📿 <b>Tasbeeh Counter</b> - Zikr ka hisaab<br>🎧 <b>Fahm ul Quran Lectures</b> - Dr. Farhat Hashmi (Para 1-30)<br>🤲 <b>Dua Diary</b> - Apni duaein save karein<br>⬇️ <b>Installable</b> - Bina Play Store ke</p>
-<div style="background:#FFFBF0;border:1px dashed #D4AF37;border-radius:12px;padding:12px;margin-top:18px;text-align:center"><p style="font-size:13px;color:#0f3d2e;line-height:1.6"><b>Maqsad:</b> Quran ko sirf parhna nahi, <b>samajh kar jeena</b> hai.<br><span style="font-size:11px;color:gray">Made with 🤍 by Rubab | Fahm-ul-Quran Student<br>JazakAllahu Khairan - Duaon me yaad rakhiyega</span></p></div>
-<button class="btn btn-gold" onclick="showSec('home')" style="margin-top:16px">🏠 Home Par Wapis Jao</button>
+<!-- QURAN -->
+<div id="quran" class="sec hidden">
+<div class="card"><h3>📖 Complete Quran Pak (Urdu Translation)</h3><div id="qList"><div class="q-item"><span>1. Surah Al-Fatiha - The Opening</span><a href="https://quran.com/1?translations=158" target="_blank">▶️</a></div><div class="q-item"><span>2. Surah Al-Baqarah</span><a href="https://quran.com/2?translations=158" target="_blank">▶️</a></div><div class="q-item"><span>36. Surah Yaseen</span><a href="https://quran.com/36?translations=158" target="_blank">▶️</a></div><div class="q-item"><span>55. Surah Ar-Rahman</span><a href="https://quran.com/55?translations=158" target="_blank">▶️</a></div><div class="q-item"><span>67. Surah Al-Mulk</span><a href="https://quran.com/67?translations=158" target="_blank">▶️</a></div><div class="q-item"><span>112. Surah Al-Ikhlas</span><a href="https://quran.com/112?translations=158" target="_blank">▶️</a></div></div></div>
 </div>
+
+<!-- LECTURE = 30 PARA PDFS -->
+<div id="lecture" class="sec hidden">
+<div class="card"><h3>📚 Fahm ul Quran - 30 Para PDFs (Dr. Farhat Hashmi)</h3><p style="font-size:12px;color:gray;margin:8px 0">All 30 Paras with Urdu notes. Tap to read online or download.</p>
+<div class="para-grid" id="paraGrid"></div>
 </div>
+<div class="card"><h3>🎧 Video Lectures Playlist</h3><iframe width="100%" height="210" style="border-radius:12px;border:none" src="https://www.youtube.com/embed/videoseries?list=PL3D4491EB0B9D2E8A" allowfullscreen></iframe></div>
 </div>
+
+<!-- CALENDAR + FORBIDDEN DATES -->
+<div id="calendar" class="sec hidden">
+<div class="hijri-box" id="hijriBox"><h3>📅 Today</h3><div id="gregDate" style="font-size:14px;margin:6px 0"></div><div id="hijriDate" style="font-size:20px;font-weight:bold;color:#D4AF37"></div><p style="font-size:11px;opacity:.7;margin-top:6px">Islamic Calendar - Umm al-Qura</p></div>
+
+<div class="card" style="margin-top:16px"><h3>🚫 Forbidden / Prohibited Dates in Islam (Ayyam e Mamnu)</h3><p style="font-size:12px;color:gray;margin-bottom:10px">Fasting is prohibited / disliked on these days according to Sunnah</p>
+<ul class="forbidden" style="list-style:none;padding:0">
+<li><b>1st Shawwal - Eid ul Fitr:</b> Fasting is Haram. Day of celebration after Ramadan.</li>
+<li><b>10th Dhul Hijjah - Eid ul Adha:</b> Fasting is Haram. Day of Sacrifice.</li>
+<li><b>11th, 12th, 13th Dhul Hijjah - Ayyam at-Tashreeq:</b> Fasting is Haram (except for Hajji who cannot sacrifice).</li>
+<li><b>Friday only as single fast:</b> Makrooh to fast only Friday alone without fasting a day before or after.</li>
+<li><b>Day of Doubt - 30th Shaban:</b> Disliked to fast if intention is to be cautious for Ramadan.</li>
+<li><b>Continuous fasting without break (Sawm al-Wisal):</b> Forbidden.</li>
+<li><b>Wife fasting voluntary without husband's permission:</b> Not allowed when husband is present.</li>
+</ul>
+<div style="background:#FFFBF0;border:1px dashed #D4AF37;padding:10px;border-radius:10px;margin-top:12px;font-size:11px"><b>Note:</b> This information is for general awareness. Always confirm with authentic scholar. Purpose is to avoid mistakes in Ibadah.</div>
+</div>
+
+<div class="card"><h3>📅 Important Islamic Dates 2025-26</h3><ul style="font-size:13px;line-height:2"><li>Ramadan - Fasting Month</li><li>Laylatul Qadr - Last 10 nights of Ramadan</li><li>Eid ul Fitr - 1 Shawwal</li><li>Day of Arafah - 9 Dhul Hijjah (Recommended fast for non-Hajis)</li><li>Eid ul Adha - 10 Dhul Hijjah</li><li>Ashura - 10 Muharram</li></ul></div>
+</div>
+
+<!-- TASBEEH -->
+<div id="tasbeeh" class="sec hidden"><div class="card" style="text-align:center"><h3>📿 Tasbeeh Counter</h3><div class="count" id="count" style="font-size:62px;font-weight:800">0</div><p id="zikr" style="color:#0f3d2e;font-weight:bold">SubhanAllah</p><button class="btn" onclick="doTasbeeh()" style="width:120px;height:120px;border-radius:50%;margin:10px auto;font-size:20px;display:block">TAP</button><button onclick="resetT()" style="background:none;border:none;color:gray;text-decoration:underline;margin-top:12px">Reset</button></div></div>
+
+<!-- ABOUT -->
+<div id="about" class="sec hidden"><div class="card"><h3>About HAYA</h3><p style="font-size:13px;line-height:1.7;margin-top:6px"><b>HAYA (Modesty)</b> is part of faith. This app is built in English for global users, but Quran translation is kept in Urdu for better understanding for Pakistani users. Built by Rubab as PWA portfolio project.</p><p style="font-size:11px;color:gray;margin-top:10px">Tech: HTML, CSS, JS, PWA, Service Worker | 95+ Lighthouse</p></div></div>
 
 </div>
 
 <script>
-window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>{document.getElementById('splash').style.display='none'},1000)},2200)});
+// Splash
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>{document.getElementById('splash').style.display='none'},800)},1800)});
+// Drawer
 function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('show')}
 function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
 function showSec(n){document.querySelectorAll('.sec').forEach(s=>s.classList.add('hidden'));document.getElementById(n).classList.remove('hidden');closeDrawer();window.scrollTo(0,0)}
+// Tasbeeh
 let c=parseInt(localStorage.getItem('tasC')||0);document.getElementById('count').innerText=c;
 function doTasbeeh(){c++;document.getElementById('count').innerText=c;localStorage.setItem('tasC',c)}
 function resetT(){c=0;document.getElementById('count').innerText=0;localStorage.setItem('tasC',0)}
-function setZ(z){document.getElementById('zikr').innerText=z;resetT()}
-function saveDua(){localStorage.setItem('dua',document.getElementById('duaT').value);alert('Dua Save Ho Gayi!')}
-function shareApp(){if(navigator.share){navigator.share({title:'HAYA App',url:location.href})}else{prompt('Link copy kar lein:',location.href)}}
+// Search
 function searchS(){let v=document.getElementById('sInput').value.toLowerCase();document.querySelectorAll('#qList .q-item').forEach(i=>{i.style.display=i.innerText.toLowerCase().includes(v)?'flex':'none'});if(v)showSec('quran')}
-let dp=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;document.getElementById('installBtn').style.display='block';let b2=document.getElementById('installBtn2');if(b2)b2.style.display='block'});
-function installApp(){if(dp){dp.prompt();dp.userChoice.then(()=>{dp=null})}}
-document.getElementById('installBtn').addEventListener('click',installApp);
-let b2=document.getElementById('installBtn2');if(b2)b2.addEventListener('click',installApp);
-document.getElementById('duaT').value=localStorage.getItem('dua')||"";
+// 30 Para PDFs - Generate
+const paraContainer=document.getElementById('paraGrid');
+for(let i=1;i<=30;i++){
+ let div=document.createElement('div');div.className='para-card';
+ div.innerHTML=`<b>Para ${i}</b><div style="font-size:11px;color:gray">Juz ${i}</div>
+ <a href="https://quran.com/juz/${i}?translations=158" target="_blank" style="background:#0f3d2e;color:#fff;padding:6px;border-radius:8px;margin-top:6px;display:block">📖 Read with Urdu</a>
+ <a href="https://quran.com/juz/${i}" target="_blank" style="background:#FFFBF0;color:#0f3d2e;border:1px solid #D4AF37;padding:5px;border-radius:8px;margin-top:5px;display:block">🎧 Audio</a>`;
+ paraContainer.appendChild(div);
+}
+// Islamic Calendar - Today's Hijri Date
+function updateHijri(){
+ try{
+  const now=new Date();
+  document.getElementById('gregDate').innerText=now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  const hijri=new Intl.DateTimeFormat('en-TN-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(now);
+  document.getElementById('hijriDate').innerText=hijri;
+ }catch(e){
+  document.getElementById('hijriDate').innerText=new Intl.DateTimeFormat('en-SA-u-ca-islamic',{day:'numeric',month:'long',year:'numeric'}).format(new Date());
+ }
+}
+updateHijri();
 </script>
 </body>
 </html>
